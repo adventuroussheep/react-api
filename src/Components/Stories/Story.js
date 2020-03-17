@@ -1,6 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, memo} from 'react';
 import { getStory } from '../../Services/newApi';
 import { StoryWrapper, StoryTitle, StoryMeta, StoryMetaElement } from "../../Styles/storyStyles";
+import {mapTime} from "../../Mappers/mapTimes";
+
 
 export const Story = ( {storyId} ) => {
     const [story, setStory] = useState({});
@@ -18,17 +20,28 @@ export const Story = ( {storyId} ) => {
                     </StoryTitle>
             </a>
             <StoryMeta>
+
                 <span className="story__by" data-testid="story-by">
                     <StoryMetaElement>
                         By: 
                     </StoryMetaElement>
-                        {story.by}
+                        {" " + story.by + " "}
+                </span>
+
+                <span className="story__time" data-testid="story-time">
+                    <StoryMetaElement>
+                        Posted:  
+                    </StoryMetaElement>
+                        {' '}
+                        {mapTime(story.time)}
                 </span>
                 
-                
+            
             </StoryMeta>
-                {/* <br></br> */}
-                {/* {JSON.stringify(story)} */}
+
+
+
+
          </StoryWrapper>) : null;
 };
 
